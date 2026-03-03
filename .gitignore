@@ -1,0 +1,41 @@
+# ===============================
+# Python
+# ===============================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+.pytest_cache/
+.mypy_cache/
+
+# ===============================
+# Virtual Environment
+# ===============================
+.venv/
+venv/
+ENV/
+
+# ===============================
+# Env secrets
+# ===============================
+.env
+.env.*
+!.env.example
+
+# ===============================
+# Playwright / Artifacts
+# ===============================
+artifacts/
+playwright-report/
+test-results/
+traces/
+videos/
+screenshots/
+
+# ===============================
+# IDE
+# ===============================
+.vscode/
+.idea/
+.DS_Store
