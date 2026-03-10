@@ -1,12 +1,18 @@
 from src.ui.flows.client_flow import ClientFlow
+from src.ui.pages.search_results_page import SearchResultsPage
 
 
-def test_client_search(page, cfg):
+def test_client_can_open_search_results(page, cfg, logger):
+    logger.info("TEST START: client can open search results")
+
     flow = ClientFlow(cfg)
     flow.open_root(page)
+    flow.search(page, "Одеса", "Кишинів", "12-03-2026")
 
-    # пример даты: сегодня/завтра — подставь актуальную строку в формате dd-mm-yyyy
-    flow.search(page, "Одеса", "Кишинів", "04-03-2026")
+    logger.info("STEP: wait results loaded")
+    results = SearchResultsPage(page)
+    results.wait_loaded()
 
-    # дальше уже будем проверять, что перешли на результаты (когда покажешь URL/DOM)
-    assert "route" in page.url or "search" in page.url
+    assert results.trips_count() > 0 or results.has_no_routes_block()
+
+    logger.info("TEST END: search results page opened successfully")
